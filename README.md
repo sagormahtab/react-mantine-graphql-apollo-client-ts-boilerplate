@@ -14,7 +14,9 @@ A modern React boilerplate with **TypeScript, Vite, Mantine, Mantine Forms, Grap
 - **📝 Biome** - All-in-one linter, formatter, and code optimizer
 - **✅ Husky & Commitlint** - Git hooks for linting before commits
 - **🏗️ Mantine Forms** - Form handling and validation
-- **🔄 GraphQL Codegen** - Automatic TypeScript type generation from GraphQL schema
+- **⚙️ GraphQL Codegen** - Automatic TypeScript type generation from GraphQL schema
+- **📦 Tabler Icons** - Simple and consistent open-source icons
+- **🎯 css modules** - Scalable styles with css modules
 
 ---
 
@@ -232,6 +234,26 @@ function fetchData() {  // Function (camelCase)
 export default function MyComponent() {  // Component (PascalCase)
   return <div>Hello</div>;
 }
+```
+
+## 📦 @tabler/icons-react Package
+
+`@tabler/icons-react` is used by this boilerplate for icons. While the package has been configured in this project, it should be noted how potential performance issues that could cause project loading delays were resolved.
+
+Tree-Shaking Configuration:
+
+In `vite.config.ts`, specific optimizations for the `@tabler/icons-react` package have been added to ensure optimal performance:
+```javascript
+//vite.config.ts
+export default defineConfig({
+	plugins: [react(), viteTsconfigPaths()],
+	resolve: {
+    alias: {
+      // /esm/icons/index.mjs only exports the icons statically, so no separate chunks are created
+      '@tabler/icons-react': '@tabler/icons-react/dist/esm/icons/index.mjs',
+		},
+	}
+});
 ```
 
 ## Available Scripts
