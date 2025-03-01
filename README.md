@@ -14,6 +14,7 @@ A modern React boilerplate with **TypeScript, Vite, Mantine, Mantine Forms, Grap
 - **📝 Biome** - All-in-one linter, formatter, and code optimizer
 - **✅ Husky & Commitlint** - Git hooks for linting before commits
 - **🏗️ Mantine Forms** - Form handling and validation
+- **🔄 GraphQL Codegen** - Automatic TypeScript type generation from GraphQL schema
 
 ---
 
@@ -41,6 +42,9 @@ npm install
 cp .env.dev .env
 
 # Update `.env` with your api base url and other configurations.
+
+# Generate types from GraphQL schema
+npm run generate:types
 
 # Start the development server
 npm run dev
@@ -103,6 +107,7 @@ export const useCounterStore = create<CounterState>((set) => ({
 ```javascript
 import { useQuery } from '@apollo/client';
 import { gql } from "@apollo/client";
+import { Post } from "@/types/graphql";
 
 export const GET_ALL_POSTS = gql`
   query GetAllPosts($start: Int, $limit: Int) {
@@ -242,6 +247,8 @@ export default function MyComponent() {  // Component (PascalCase)
 - `npm run preview`  
   Previews the production build locally using Vite.
 
+- `npm run generate:types`
+  Generates TypeScript types from your GraphQL schema and operations.
 
 ## 🏗️ Build for Production
 ```sh
